@@ -9,7 +9,11 @@ const AddUser = () => {
         onSubmit={values => {
           const users = localStorage.getItem('users')
           const usersToWrite = users ? JSON.parse(users) : []
-          usersToWrite.push(values)
+          const lastUser = usersToWrite[usersToWrite.length - 1]
+          usersToWrite.push({
+            ...values,
+            id: lastUser ? lastUser.id + 1 : 0
+          })
           localStorage.setItem('users', JSON.stringify(usersToWrite))
         }}
       />

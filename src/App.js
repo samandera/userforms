@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
 import AddUser from './userForms/AddUser';
+import Users from './Users'
 
 function App() {
   return (
     <div className="App">
-      <AddUser/>
+      <Users/>
     </div>
   );
 }
