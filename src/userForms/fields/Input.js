@@ -13,7 +13,7 @@ const Input = ({
   type = 'text',
   setValue
 }) => {
-  const { onBlur, onChange, ref } = register(name, {
+  const { onBlur, ref } = register(name, {
     maxLength,
     minLength,
     pattern,

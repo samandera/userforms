@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import Input from './fields/Input'
 import Select from './fields/Select'
 
@@ -14,19 +15,20 @@ const titleOptions = [
 ]
 
 const UserForm = ({
+  formHeading,
   initialValues = {
     firstName: '',
     lastName: '',
     email: '',
     mobileNumber: null,
     title: null,
-  }
+  },
+  onSubmit
 }) => {
   const { register, getValues, handleSubmit, formState: { errors }, setValue, watch } = useForm({
     defaultValues: initialValues
   });
-  const values = watch()
-  const onSubmit = data => console.log(values);
+  watch()
   console.log(errors);
 
   return (
@@ -39,6 +41,7 @@ const UserForm = ({
       autoComplete="off"
       onSubmit={handleSubmit(onSubmit)}
     >
+      <Typography variant='h6' gutterBottom>{formHeading}</Typography>
       <Input label='First name' name='firstName' register={register} getValues={getValues} setValue={setValue} required maxLength={80} />
       <Input label='Last name' name='lastName' register={register} getValues={getValues} setValue={setValue} required maxLength={100} />
       <Input type='email' label='Email' name='email' register={register} getValues={getValues} setValue={setValue} pattern={/^\S+@\S+$/i} />

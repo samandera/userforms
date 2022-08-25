@@ -13,7 +13,7 @@ const SelectField = ({
   required,
   setValue
 }) => {
-  const { onBlur, onChange, ref } = register(name, {
+  const { onBlur, ref } = register(name, {
     required
   });
 
