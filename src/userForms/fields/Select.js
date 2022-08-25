@@ -27,10 +27,10 @@ const SelectField = ({
         label={label}
         onBlur={onBlur}
         onChange={e => { setValue(name, e.target.value) }}
-        value={getValues(name)}
+        value={getValues(name) || options[0].value}
       >
         {options.map(({ value, label: optionLabel }) => (
-          <MenuItem key={value} value={value}>{optionLabel}</MenuItem>
+          <MenuItem component='option' key={value} value={value}>{optionLabel}</MenuItem>
         ))}
       </Select>
     </FormControl>

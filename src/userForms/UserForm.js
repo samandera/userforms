@@ -14,18 +14,19 @@ const titleOptions = [
 ]
 
 const UserForm = ({
-  defaultValues = {
+  initialValues = {
     firstName: '',
     lastName: '',
     email: '',
     mobileNumber: null,
-    title: titleOptions[0].value,
+    title: null,
   }
 }) => {
-  const { register, getValues, handleSubmit, formState: { errors }, setValue } = useForm({
-    defaultValues
+  const { register, getValues, handleSubmit, formState: { errors }, setValue, watch } = useForm({
+    defaultValues: initialValues
   });
-  const onSubmit = data => console.log(getValues());
+  const values = watch()
+  const onSubmit = data => console.log(values);
   console.log(errors);
 
   return (
@@ -45,12 +46,7 @@ const UserForm = ({
       <Select
         label='Title'
         name='title'
-        options={[
-          { label: 'Mr', value: 'mr' },
-          { label: 'Mrs', value: 'mrs' },
-          { label: 'Miss', value: 'miss' },
-          { label: 'Dr', value: 'dr' }
-        ]}
+        options={titleOptions}
         register={register}
         getValues={getValues}
         setValue={setValue}
