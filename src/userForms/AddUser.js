@@ -1,7 +1,9 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import UserForm from './UserForm'
 
 const AddUser = () => {
+  const navigate = useNavigate()
   return (
     <>
       <UserForm
@@ -15,6 +17,7 @@ const AddUser = () => {
             id: lastUser ? lastUser.id + 1 : 0
           })
           localStorage.setItem('users', JSON.stringify(usersToWrite))
+          navigate('/', { replace: true })
         }}
       />
     </>

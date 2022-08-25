@@ -16,18 +16,19 @@ const titleOptions = [
 
 const UserForm = ({
   formHeading,
-  initialValues = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    mobileNumber: null,
-    title: null,
-  },
+  initialValues,
   onSubmit
 }) => {
   const { register, getValues, handleSubmit, formState: { errors }, setValue, watch } = useForm({
     defaultValues: initialValues
   });
+  React.useEffect(() => {
+    if (initialValues) {
+      Object.entries(initialValues).forEach(([field, value]) => {
+        setValue(field, value)
+      })
+    }
+  }, [initialValues])
   watch()
   console.log(errors);
 

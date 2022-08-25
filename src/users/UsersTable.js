@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom'
+import Button from '@mui/material/Button';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,17 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const Users = () => {
-  const [users, setUsers] = React.useState([])
-
-  React.useEffect(() => {
-    const storedUsers = localStorage.getItem('users')
-    if (storedUsers) {
-      setUsers(JSON.parse(storedUsers))
-    }
-  }, [])
-
-  console.log(users)
+const Users = ({ users }) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -52,7 +44,9 @@ const Users = () => {
               <TableCell>{lastName}</TableCell>
               <TableCell>{email}</TableCell>
               <TableCell align="right">{mobileNumber}</TableCell>
-              <TableCell align="right">{mobileNumber}</TableCell>
+              <TableCell align="right">
+                <Button component={Link} to={`editUser/${id}`} variant='outlined'>Edit</Button>
+              </TableCell>
               <TableCell align="right">{mobileNumber}</TableCell>
             </TableRow>
           ))}
