@@ -1,7 +1,10 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom'
+import HomeIcon from '@mui/icons-material/Home'
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography';
 import Input from './fields/Input'
 import Select from './fields/Select'
@@ -55,8 +58,12 @@ const UserForm = ({
         getValues={getValues}
         setValue={setValue}
       />
-
-      <Button type='submit' variant="outlined">Submit</Button>
+      <Stack spacing={2} direction="row">
+        <Button component={Link} to="/" variant="outlined" startIcon={<HomeIcon />}>
+          Home
+        </Button>
+        <Button type='submit' variant="outlined">Submit</Button>
+      </Stack>
     </Box>
   );
 }
