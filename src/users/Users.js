@@ -14,13 +14,17 @@ const Users = () => {
     }
   }, [])
 
-  console.log(users)
+  const deleteUser = id => {
+    const usersWithoutDeletedItem = users.filter(({ id: currentId }) => currentId !== id)
+    localStorage.setItem('users', JSON.stringify(usersWithoutDeletedItem))
+    setUsers(usersWithoutDeletedItem)
+  }
   return (
     <>
       <Box>
         <Button component={Link} to='addUser' variant='contained'>Add User</Button>
       </Box>
-      <UsersTable users={users} />
+      <UsersTable users={users} deleteUser={deleteUser} />
     </>
   )
 }

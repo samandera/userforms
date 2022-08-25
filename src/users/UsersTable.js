@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom'
+import DeleteIcon from '@mui/icons-material/Delete'
 import Button from '@mui/material/Button';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,7 +10,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const Users = ({ users }) => {
+const Users = ({ deleteUser, users }) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -47,7 +48,11 @@ const Users = ({ users }) => {
               <TableCell align="right">
                 <Button component={Link} to={`editUser/${id}`} variant='outlined'>Edit</Button>
               </TableCell>
-              <TableCell align="right">{mobileNumber}</TableCell>
+              <TableCell align="right">
+                <Button onClick={() => { deleteUser(id) }} variant="outlined" startIcon={<DeleteIcon />} color='error'>
+                  Delete
+                </Button>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

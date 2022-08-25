@@ -14,7 +14,7 @@ const AddUser = () => {
           const lastUser = usersToWrite[usersToWrite.length - 1]
           usersToWrite.push({
             ...values,
-            id: lastUser ? lastUser.id + 1 : 0
+            id: lastUser ? parseInt(lastUser.id) + 1 : 0
           })
           localStorage.setItem('users', JSON.stringify(usersToWrite))
           navigate('/', { replace: true })
