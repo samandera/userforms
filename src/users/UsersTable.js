@@ -12,7 +12,7 @@ import Paper from '@mui/material/Paper';
 
 const Users = ({ deleteUser, users }) => {
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{ mt: 5 }} >
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>

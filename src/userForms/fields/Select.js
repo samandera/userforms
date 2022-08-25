@@ -30,7 +30,7 @@ const SelectField = ({
         value={getValues(name) || options[0].value}
       >
         {options.map(({ value, label: optionLabel }) => (
-          <MenuItem component='option' key={value} value={value}>{optionLabel}</MenuItem>
+          <MenuItem key={value} value={value}>{optionLabel}</MenuItem>
         ))}
       </Select>
     </FormControl>

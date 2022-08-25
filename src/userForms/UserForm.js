@@ -23,7 +23,16 @@ const UserForm = ({
   onSubmit
 }) => {
   const { register, getValues, handleSubmit, formState: { errors }, setValue, watch } = useForm({
-    defaultValues: initialValues
+    defaultValues: (
+      initialValues
+      || {
+        firstName: '',
+        lastName: '',
+        email: '',
+        mobileNumber: '',
+        title: titleOptions[0].value,
+      }
+    )
   });
   React.useEffect(() => {
     if (initialValues) {
@@ -58,11 +67,11 @@ const UserForm = ({
         getValues={getValues}
         setValue={setValue}
       />
-      <Stack spacing={2} direction="row">
+      <Stack spacing={2} direction="row" justifyContent="center">
         <Button component={Link} to="/" variant="outlined" startIcon={<HomeIcon />}>
           Home
         </Button>
-        <Button type='submit' variant="outlined">Submit</Button>
+        <Button type='submit' variant="contained">Submit</Button>
       </Stack>
     </Box>
   );
