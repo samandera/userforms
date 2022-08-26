@@ -1,18 +1,17 @@
 import React from 'react';
+import { useFormContext } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 
 const Input = ({
-  getValues,
   label,
   maxLength,
   minLength,
   name,
   pattern,
-  register,
   required,
-  type = 'text',
-  setValue
+  type = 'text'
 }) => {
+  const { register, setValue, watch } = useFormContext()
   const { onBlur, ref } = register(name, {
     maxLength,
     minLength,
@@ -23,7 +22,7 @@ const Input = ({
     <TextField
       onBlur={onBlur}
       onChange={e => { setValue(name, e.target.value) }}
-      value={getValues(name)}
+      value={watch(name)}
       id={name}
       inputRef={ref}
       label={label}

@@ -14,23 +14,21 @@ const EditUser = props => {
       const { id: _, ...user } = currentUser
       setInitialValues(user)
     }
-  }, [])
+  }, [id])
   return initialValues
   ? (
-    <>
-      <UserForm
-        formHeading='Edit User'
-        initialValues={initialValues}
-        onSubmit={values => {
-          const users = localStorage.getItem('users')
-          const usersToWrite = users ? JSON.parse(users) : []
-          const userIndex = usersToWrite.findIndex(({ id: currentId }) => currentId.toString() === id)
-          usersToWrite[userIndex] = { id, ...values }
-          localStorage.setItem('users', JSON.stringify(usersToWrite))
-          navigate('/', { replace: true })
-        }}
-      />
-    </>
+    <UserForm
+      formHeading='Edit User'
+      initialValues={initialValues}
+      onSubmit={values => {
+        const users = localStorage.getItem('users')
+        const usersToWrite = users ? JSON.parse(users) : []
+        const userIndex = usersToWrite.findIndex(({ id: currentId }) => currentId.toString() === id)
+        usersToWrite[userIndex] = { id, ...values }
+        localStorage.setItem('users', JSON.stringify(usersToWrite))
+        navigate('/', { replace: true })
+      }}
+    />
   )
   : null
 }

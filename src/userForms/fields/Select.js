@@ -1,18 +1,17 @@
 import * as React from 'react';
+import { useFormContext } from 'react-hook-form';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 
 const SelectField = ({
-  getValues,
   label,
   name,
   options = [],
-  register,
-  required,
-  setValue
+  required
 }) => {
+  const { register, setValue, watch } = useFormContext()
   const { onBlur, ref } = register(name, {
     required
   });
@@ -27,7 +26,7 @@ const SelectField = ({
         label={label}
         onBlur={onBlur}
         onChange={e => { setValue(name, e.target.value) }}
-        value={getValues(name) || options[0].value}
+        value={watch(name) || options[0].value}
       >
         {options.map(({ value, label: optionLabel }) => (
           <MenuItem key={value} value={value}>{optionLabel}</MenuItem>
